@@ -27,14 +27,11 @@ loginUser.addEventListener('submit', (e) => {
 	    throw Error(response.statusText);
 		}
 		// Here is where you put what you want to do with the response.
-        window.location.href = "http://127.0.0.1:5500/users.html";
+        sessionStorage.userName = usernameValue.value;
+        window.location.href = "http://127.0.0.1:5500/WebStore_FETCHAPI/userSession.html";
         alert("Te has logueado correctamente");
 	})
 	.catch(function(error) {
 		console.log('Looks like there was a problem: \n', error);
 	});
-
-    
-
-    
 })

@@ -22,14 +22,15 @@ const renderUsers = (users) => {
         <div class="card mt-4 col-md-6 bg-light">
         <img src="${user.phoneNumber}" class="card-img-top" alt="...">
             <div class="card-body" data-id=${user.id}>
-                <h5 class="card-title">${user.userName}</h5>
-                <p class="card-text"> ${user.firstName}</p>
-                <p class="card-text lastname" data-id=${user.lastName}> ${user.lastName}</p>
-                <p class="card-text email"> ${user.emailId}</p>
-                <p class="card-text password d-none"> ${user.password}</p>
-                <p class="card-text phonenumber d-none"> ${user.phoneNumber}</p>
+                <h5 class="card-title" data-id=${user.userName}>${user.userName}</h5>
+                <p class="card-text">${user.firstName}</p>
+                <p class="card-text lastname">${user.lastName}</p>
+                <p class="card-text email">${user.emailId}</p>
+                <p class="card-text password d-none">${user.password}</p>
+                <p class="card-text phonenumber d-none">${user.phoneNumber}</p>
                 <a href="#" class="card-link" id="edit-user" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
                 <a href="#" class="card-link" id="delete-user">Delete</a>
+                <a href="#" class="card-link" id="detail-user">Detalle</a>
             </div>
         </div>
         `;
@@ -47,9 +48,11 @@ usersList.addEventListener('click', (e) => {
     e.preventDefault();
     let delButtonIsPressed = e.target.id == 'delete-user';
     let editButtonIsPrecced = e.target.id == 'edit-user';
+    let detailButtonIsPrecced = e.target.id == 'detail-user';
 
     let id = e.target.parentElement.dataset.id;
-
+    let usernameId = e.target.parentElement.querySelector('.card-title').textContent;;
+    console.log(usernameId);
 
     //Delete user
     if (delButtonIsPressed) {
@@ -58,6 +61,11 @@ usersList.addEventListener('click', (e) => {
         })
         .then(res => res.json())
         .then(() => location.reload())
+    }
+
+    if (detailButtonIsPrecced) {
+        sessionStorage.userNameDetail = usernameId;
+        window.location.href = "http://127.0.0.1:5500/WebStore_FETCHAPI/userDetail.html";
     }
 
     if(editButtonIsPrecced){
@@ -76,7 +84,7 @@ usersList.addEventListener('click', (e) => {
         emailValue.value = emailContent;
         passValue.value = passwordNameContent;
         phoneValue.value = phoneNameContent;
-        idValue = e.target.parentElement.dataset.id;;
+        idValue = e.target.parentElement.dataset.id;
 
         console.log(userContent, firstNameContent, lastNameContent, emailContent,passwordNameContent,phoneNameContent,idValue);
     }
@@ -96,7 +104,6 @@ usersList.addEventListener('click', (e) => {
                 emailId:emailValue.value,
                 password:passValue.value,
                 confirmPassword:passValue.value,
-                phoneNumber:phoneValue.value,
                 userRole:"User"
             })
         })
@@ -120,10 +127,6 @@ usersList.addEventListener('click', (e) => {
         .catch(function(error) {
             console.log('Looks like there was a problem: \n', error);
         });
-    
-        
-    
-        
     })
     
 });
