@@ -10,9 +10,62 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>
+
+  <body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/WebStore_FETCHAPI/users.html">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/WebStore_FETCHAPI/userSession.html">Mis datos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5500/WebStore_FETCHAPI/login.html">Cerrar sesion</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
+      <div id="success-message"></div>
         <div class="user-detail"></div>
+        <form class="edit-user" id="editUser">
+          <h3>Editar</h3>
+          <div class="mb-3">
+              <label for="username" class="form-label">UserName</label>
+              <input type="text" class="form-control" id="username-value">
+          </div>
+          <div class="mb-3">
+              <label for="firstname" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstname-value">
+          </div>
+          <div class="mb-3">
+              <label for="lastname" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastname-value">
+          </div>
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="emailid-value" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="phonenumber" class="form-label">Phone number</label>
+            <input type="text" class="form-control" id="phone-value">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password-value">
+          </div>
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
     </div>
 
   </body>

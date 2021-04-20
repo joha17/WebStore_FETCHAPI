@@ -51,7 +51,7 @@ usersList.addEventListener('click', (e) => {
     let detailButtonIsPrecced = e.target.id == 'detail-user';
 
     let id = e.target.parentElement.dataset.id;
-    let usernameId = e.target.parentElement.querySelector('.card-title').textContent;;
+    let usernameId = e.target.parentElement.querySelector('.card-title').textContent;
     console.log(usernameId);
 
     //Delete user
