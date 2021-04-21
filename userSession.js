@@ -14,6 +14,7 @@ const passValue = document.getElementById('password-value');
 const phoneValue = document.getElementById('phone-value');
 let idValue = '';
 
+//Se crean esta variables donde se almacena los cambios del form edit
 let userContent = '';
 let firstNameContent = '';
 let lastNameContent = '';
@@ -41,6 +42,7 @@ fetch(url)
         output = 
         `
         <div class="card mt-4 col-md-6 bg-light">
+            //En ete data.id lo cambias por correo
             <div class="card-body" data-id=${data.id}>
                 <h3>Detalle</h3>
                 <h5 class="card-title">${data.userName}</h5>
@@ -51,6 +53,7 @@ fetch(url)
                 <p class="card-text phonenumber">${data.phoneNumber}</p>
                 <a href="#" class="card-link" id="delete-user">Delete</a>
                 <a href="#" class="card-link" id="edit-user">Editar</a>
+                <a href="#" class="card-link" id="add-user">agregar carrito</a>
             </div>
         </div>
         `
@@ -61,15 +64,44 @@ fetch(url)
           usersDetail.innerHTML = output;
         }
     })
+
+
+let compras = [];
+    // object to add
+let compra = {};
+
+let sum_total = '';
     
   usersDetail.addEventListener('click', (e) => {
     e.preventDefault();
     let delButtonIsPressed = e.target.id == 'delete-user';
     let editButtonIsPrecced = e.target.id == 'edit-user';
+    let addButtonIsPrecced = e.target.id == 'add-user';
 
+    //Este id no se cambia
     idValue = e.target.parentElement.dataset.id;
-    let usernameId = e.target.parentElement.querySelector('.card-title').textContent;
-    console.log(usernameId);
+    
+    if(addButtonIsPrecced){
+        const parent = e.target.parentElement;
+        compra = {
+            precio: 200,
+            id: 34,
+            cantidad: 5,
+            total: 5 * 200
+            }
+
+        compras.unshift(compra);
+        console.log(compras);
+
+    }
+
+   /**  let sum = 0;
+    compras.forEach(function(item) {
+        sum += item.total;
+        console.log(item.precio, item.id, sum);
+    }); **/
+
+    sum_total = sum;
 
     //Delete user
     if (delButtonIsPressed) {
@@ -90,6 +122,7 @@ fetch(url)
         passwordNameContent = parent.querySelector('.password').textContent;
         phoneNameContent = parent.querySelector('.phonenumber').textContent;
 
+        //Aqui se llenan los campos del form con la tarjeta de detalles
         userNameValue.value = userContent;
         firstNameValue.value = firstNameContent;
         lastNameValue.value = lastNameContent;
@@ -101,6 +134,34 @@ fetch(url)
         console.log(userContent, firstNameContent, lastNameContent, emailContent,passwordNameContent,phoneNameContent,idValue);
     }  
 });
+
+comprarCarrito.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    compras.forEach(compra => {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                precio:compra.precio.value,
+                total:compra.total,
+                userName: userNameSession,
+                idproducto:compra.idproducto,
+                idcarrito:compra.idcarrito
+            })
+        }) 
+    });
+    successMessage.innerHTML = `
+              <div class="alert alert-success" role="alert">
+                  Se ha compro correctamente!!
+              </div>
+          `;
+
+
+    
+})
 
 
   editUser.addEventListener('submit', (e) => {

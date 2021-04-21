@@ -28,7 +28,6 @@ const renderUsers = (users) => {
                 <p class="card-text email">${user.emailId}</p>
                 <p class="card-text password d-none">${user.password}</p>
                 <p class="card-text phonenumber d-none">${user.phoneNumber}</p>
-                <a href="#" class="card-link" id="edit-user" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
                 <a href="#" class="card-link" id="delete-user">Delete</a>
                 <a href="#" class="card-link" id="detail-user">Detalle</a>
             </div>

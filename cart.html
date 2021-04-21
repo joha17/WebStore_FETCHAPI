@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Adding object in array</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+  
+<body>
+    <button onclick="unshiftFunction()">Add elements</button>
+
+    <script>
+        let persons = []
+        // object to add
+        let person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+            }
+
+        function unshiftFunction() {
+            persons.unshift(person);
+            console.log(persons);
+        }
+    
+        
+        
+    </script>
+  
+</body>
+  
+</html>
